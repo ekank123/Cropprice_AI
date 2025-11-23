@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Results - Buffer Stock Prediction{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1 class="text-center mb-4">Prediction Results</h1>
+        {% if error %}
+        <div class="alert alert-danger">
+            <strong>Error:</strong> {{ error }}
+        </div>
+        {% else %}
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5>Predictions</h5>
+            </div>
+            <div class="card-body">
+                <pre>{{ predictions|join('\n') }}</pre>
+            </div>
+        </div>
+
+        <div class="card mb-4">
+            <div class="card-header">
+                <h5>Analysis Summary</h5>
+            </div>
+            <div class="card-body">
+                {{ table_html|safe }}
+            </div>
+        </div>
+
+        {% if image_url %}
+        <div class="card">
+            <div class="card-header">
+                <h5>Price Prediction Plot</h5>
+            </div>
+            <div class="card-body text-center">
+                <img src="{{ image_url }}" alt="Prediction Plot" class="img-fluid">
+            </div>
+        </div>
+        {% endif %}
+        {% endif %}
+        <div class="text-center mt-4">
+            <a href="/" class="btn btn-secondary">Back to Form</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
